@@ -4,6 +4,9 @@ stages:
   - deploy dev
   - deploy prod
 
+variables:
+  IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_SHORT_SHA
+
 go format check:
   image: golang:1.14
   stage: check
@@ -37,3 +40,10 @@ build windows:
   <<: *build
   variables:
     GOOS: windows
+
+build docker:
+  stage: build
+  script:
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
+    - docker build -t $IMAGE .
+    - docker push $IMAGE
