@@ -16,7 +16,7 @@ editorconfig check:
   script:
     - ec
 
-build linux:
+.build: &build
   stage: build
   image: golang:1.14
   script:
@@ -24,25 +24,16 @@ build linux:
   artifacts:
     paths:
       - hello
+
+build linux:
+  <<: *build
 
 build mac:
-  stage: build
-  image: golang:1.14
+  <<: *build
   variables:
     GOOS: darwin
-  script:
-    - go build -o hello .
-  artifacts:
-    paths:
-      - hello
 
 build windows:
-  stage: build
-  image: golang:1.14
+  <<: *build
   variables:
     GOOS: windows
-  script:
-    - go build -o hello .
-  artifacts:
-    paths:
-      - hello
