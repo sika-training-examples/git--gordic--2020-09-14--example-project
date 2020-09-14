@@ -93,7 +93,7 @@ stop dev:
 
 deploy prod:
   <<: *deploy
-  <<: *dev
+  <<: *prod
   environment:
     name: prod
     url: https://prod.k8s.sikademo.com
@@ -101,7 +101,7 @@ deploy prod:
 
 stop prod:
   <<: *stop
-  <<: *dev
+  <<: *prod
   environment:
     name: prod
     action: stop
