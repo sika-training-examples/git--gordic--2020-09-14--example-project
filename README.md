@@ -5,5 +5,5 @@ Demo Demo
 - Foo
 - Bar
 - JS
-- OOndrej DevOps SSika
+- Ondrej DevOps Sika
 - TT
