@@ -9,3 +9,9 @@ go format check:
   stage: check
   script:
     - diff -u <(echo -n) <(gofmt -d ./)
+
+editorconfig check:
+  image: mstruebing/editorconfig-checker
+  stage: check
+  script:
+    - /ec
