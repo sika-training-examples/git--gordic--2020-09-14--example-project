@@ -96,7 +96,7 @@ deploy prod:
   <<: *prod
   environment:
     name: prod
-    url: https://prod.k8s.sikademo.com
+    url: https://production.k8s.sikademo.com
     on_stop: stop prod
 
 stop prod:
