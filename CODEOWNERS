@@ -3,3 +3,4 @@ CODEOWNERS @ondrejsika
 *.txt @demo
 proj-a/** @ondrejsika
 proj-b/** @demo
+*.go @ondrejsika
