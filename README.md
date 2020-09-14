@@ -3,3 +3,4 @@
 - Foo
 - Bar
 - JS
+- Ondrej Sika
