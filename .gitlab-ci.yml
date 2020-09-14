@@ -1,3 +1,5 @@
+image: ondrejsika/ci
+
 stages:
   - check
   - build
@@ -5,7 +7,7 @@ stages:
   - deploy prod
 
 variables:
-  IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_SHORT_SHA
+  IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
 
 go format check:
   image: golang:1.14
