@@ -74,6 +74,8 @@ build docker:
 .prod: &prod
   when: manual
   stage: deploy prod
+  only:
+    - master
   variables:
     RELEASE: production
     HOST: production.k8s.sikademo.com
