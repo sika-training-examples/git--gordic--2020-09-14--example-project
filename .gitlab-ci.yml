@@ -17,9 +17,10 @@ editorconfig check:
     - ec
 
 build linux:
+  stage: build
   image: golang:1.14
   script:
-    - go build . -o hello
+    - go build -o hello .
   artifacts:
     paths:
       - hello
