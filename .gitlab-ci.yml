@@ -82,7 +82,7 @@ deploy dev:
   environment:
     name: dev/$CI_COMMIT_REF_SLUG
     url: https://$CI_COMMIT_REF_SLUG.k8s.sikademo.com
-    on_stop: stop_dev
+    on_stop: stop dev
 
 stop dev:
   <<: *stop
@@ -97,7 +97,7 @@ deploy prod:
   environment:
     name: prod
     url: https://prod.k8s.sikademo.com
-    on_stop: stop_dev
+    on_stop: stop prod
 
 stop prod:
   <<: *stop
