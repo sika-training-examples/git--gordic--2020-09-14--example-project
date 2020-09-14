@@ -60,6 +60,8 @@ build docker:
 
 .stop: &stop
   when: manual
+  variables:
+    GIT_STRATEGY: none
   script:
     - helm uninstall $RELEASE -n default
 
