@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ec
+
+diff -u <(echo -n) <(gofmt -d ./)
