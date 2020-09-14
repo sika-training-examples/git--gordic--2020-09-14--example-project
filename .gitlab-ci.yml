@@ -49,3 +49,59 @@ build docker:
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD
     - docker build -t $IMAGE .
     - docker push $IMAGE
+
+.deploy: &deploy
+  script:
+    - helm repo add ondrejsika https://helm.oxs.cz
+    - helm upgrade --install -n default
+      $RELEASE ondrejsika/one-image
+      --set image=$IMAGE
+      --set host=$HOST
+
+.stop: &stop
+  when: manual
+  script:
+    - helm uninstall $RELEASE -n default
+
+.dev: &dev
+  stage: deploy
+  variables:
+    RELEASE: $CI_COMMIT_REF_SLUG
+    HOST: $CI_COMMIT_REF_SLUG.k8s.sikademo.com
+
+.prod: &prod
+  when: manual
+  stage: deploy prod
+  variables:
+    RELEASE: production
+    HOST: production.k8s.sikademo.com
+
+deploy dev:
+  <<: *deploy
+  <<: *dev
+  environment:
+    name: dev/$CI_COMMIT_REF_SLUG
+    url: https://$CI_COMMIT_REF_SLUG.k8s.sikademo.com
+    on_stop: stop_dev
+
+stop dev:
+  <<: *stop
+  <<: *dev
+  environment:
+    name: dev/$CI_COMMIT_REF_SLUG
+    action: stop
+
+deploy prod:
+  <<: *deploy
+  <<: *dev
+  environment:
+    name: prod
+    url: https://prod.k8s.sikademo.com
+    on_stop: stop_dev
+
+stop prod:
+  <<: *stop
+  <<: *dev
+  environment:
+    name: prod
+    action: stop
