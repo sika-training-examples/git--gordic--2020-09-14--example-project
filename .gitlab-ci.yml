@@ -64,7 +64,7 @@ build docker:
     - helm uninstall $RELEASE -n default
 
 .dev: &dev
-  stage: deploy
+  stage: deploy dev
   variables:
     RELEASE: $CI_COMMIT_REF_SLUG
     HOST: $CI_COMMIT_REF_SLUG.k8s.sikademo.com
