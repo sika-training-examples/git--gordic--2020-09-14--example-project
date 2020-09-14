@@ -1,3 +1,4 @@
 # gordic-demo
 
 - Foo
+- Bar
