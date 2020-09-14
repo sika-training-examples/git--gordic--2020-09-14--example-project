@@ -9,13 +9,13 @@ stages:
 variables:
   IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
 
-.go format check:
+go format check:
   image: golang:1.14
   stage: check
   script:
     - diff -u <(echo -n) <(gofmt -d ./)
 
-.editorconfig check:
+editorconfig check:
   image: mstruebing/editorconfig-checker
   stage: check
   script:
@@ -30,15 +30,15 @@ variables:
     paths:
       - hello
 
-.build linux:
+build linux:
   <<: *build
 
-.build mac:
+build mac:
   <<: *build
   variables:
     GOOS: darwin
 
-.build windows:
+build windows:
   <<: *build
   variables:
     GOOS: windows
