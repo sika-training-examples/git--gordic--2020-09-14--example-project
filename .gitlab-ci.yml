@@ -54,7 +54,7 @@ build docker:
   script:
     - helm repo add ondrejsika https://helm.oxs.cz
     - helm upgrade --install -n default
-      $RELEASE ondrejsika/one-image
+      dev-$RELEASE ondrejsika/one-image
       --set image=$IMAGE
       --set host=$HOST
 
