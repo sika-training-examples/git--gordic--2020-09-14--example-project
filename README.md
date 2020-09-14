@@ -3,4 +3,4 @@
 - Foo
 - Bar
 - JS
-- OOndrej SSika
+- OOndrej DevOps SSika
