@@ -1,0 +1,11 @@
+stages:
+  - check
+  - build
+  - deploy dev
+  - deploy prod
+
+go format check:
+  image: golang:1.14
+  stage: check
+  script:
+    - diff -u <(echo -n) <(gofmt -d ./)
